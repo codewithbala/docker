@@ -1,0 +1,53 @@
+Installing Docker on Ubuntu is a straightforward process. Below are the steps to install Docker on an Ubuntu system:
+
+Step 1: Update the System
+First, update your existing list of packages:
+
+
+sudo apt-get update
+Step 2: Install Prerequisite Packages
+Install a few prerequisite packages which let apt use packages over HTTPS:
+
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+Step 3: Add Docker’s Official GPG Key
+Add Docker’s official GPG key to ensure the integrity of the packages:
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+Step 4: Add Docker APT Repository
+Add the Docker repository to your system's software repository list:
+
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Step 5: Update Package Database
+After adding the Docker repository, update the package database:
+
+
+sudo apt-get update
+Step 6: Install Docker
+Now, install Docker using the following command:
+
+
+
+sudo apt-get install docker-ce
+Step 7: Verify Docker Installation
+After the installation is complete, check if Docker is installed and running:
+
+sudo systemctl status docker
+You should see output indicating that Docker is active and running.
+
+Step 8: Run Docker Without sudo (Optional)
+If you want to run Docker commands without needing sudo, add your user to the docker group:
+
+
+sudo usermod -aG docker $USER
+Then, log out and log back in to apply the group changes.
+
+Step 9: Test Docker Installation
+Finally, test your Docker installation by running a sample Docker container:
+
+
+docker run hello-world
+This command downloads a test image and runs it in a container. If Docker is installed correctly, you should see a "Hello from Docker!" message.
+
+That's it! Docker should now be installed and ready to use on your Ubuntu system.
